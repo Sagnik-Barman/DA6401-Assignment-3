@@ -1,0 +1,10 @@
+torch>=2.0.0
+numpy
+datasets
+spacy>=3.0.0
+wandb
+evaluate
+tqdm
+pyyaml
+matplotlib
+scikit-learn

@@ -1,0 +1,34 @@
+# Base configuration for DA6401 Assignment 3
+# Override any value via CLI: python train.py --epochs 30
+
+# ── Data ──────────────────────────────────────────────────────
+batch_size:   128
+max_len:      150
+min_freq:     2
+num_workers:  2
+
+# ── Model ─────────────────────────────────────────────────────
+d_model:      256
+num_heads:    8
+num_layers:   3
+d_ff:         512
+dropout:      0.1
+pos_encoding: sinusoidal    # sinusoidal | learned
+
+# ── Training ──────────────────────────────────────────────────
+epochs:         30
+warmup_steps:   4000
+label_smoothing: 0.1
+clip:           1.0
+use_noam:       true
+noam_factor:    1.0
+fixed_lr:       0.0001      # used only when use_noam=false
+
+# ── W&B ───────────────────────────────────────────────────────
+wandb_project: da6401-assignment3
+wandb_entity:  null
+run_name:      base
+log_interval:  50
+
+# ── Checkpoint ────────────────────────────────────────────────
+save_path:    checkpoints/best_model.pt
