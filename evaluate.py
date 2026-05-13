@@ -1,6 +1,5 @@
 """
 Gradescope evaluation script.
-Loads the saved checkpoint and evaluates on the test set.
 Usage: python evaluate.py --model_path checkpoints/best_model.pt
 """
 import argparse
@@ -34,13 +33,14 @@ def main():
         pos_encoding   = cfg.get('pos_encoding', 'sinusoidal'),
     ).to(device)
     model.load_state_dict(ckpt['model_state'])
+    model.set_vocabs(src_vocab, tgt_vocab)   # attach vocabs for infer()
     print(f"Loaded checkpoint from epoch {ckpt['epoch']}")
 
     _, _, test_loader, _, _ = get_dataloaders(
         batch_size  = 64,
         max_len     = cfg['max_len'],
         min_freq    = cfg['min_freq'],
-        num_workers = 2,
+        num_workers = 0,
     )
 
     bleu = evaluate_bleu(model, test_loader, src_vocab, tgt_vocab, device)

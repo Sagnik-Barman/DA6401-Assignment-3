@@ -263,25 +263,42 @@ class Transformer(nn.Module):
         dec_out = self.decoder(tgt, enc_out, tgt_mask, src_mask)
         return self.fc_out(dec_out)
 
-    def infer(self, src, src_mask=None, max_len=100, bos_idx=1, eos_idx=2):
+    def set_vocabs(self, src_vocab, tgt_vocab):
+        """Store vocabs on model for use during inference."""
+        self.src_vocab = src_vocab
+        self.tgt_vocab = tgt_vocab
+
+    def infer(self, src, src_mask=None, max_len=100, bos_idx=None, eos_idx=None):
         """
-        Greedy decoding for autograder compatibility.
-        Accepts a string, list of token ids, or a (B, src_len) tensor.
+        Greedy decoding. Accepts string, list of token ids, or (B, seq) tensor.
+        Returns a decoded string.
         """
         self.eval()
+        device = next(self.parameters()).device
+
+        # Resolve bos/eos from stored vocab if available
+        src_vocab = getattr(self, "src_vocab", None)
+        tgt_vocab = getattr(self, "tgt_vocab", None)
+        if bos_idx is None:
+            bos_idx = tgt_vocab.bos_idx if tgt_vocab else 1
+        if eos_idx is None:
+            eos_idx = tgt_vocab.eos_idx if tgt_vocab else 2
+        pad_idx = src_vocab.pad_idx if src_vocab else 0
 
         # Handle string input
         if isinstance(src, str):
-            import spacy
-            try:
-                nlp = spacy.load("de_core_news_sm")
-            except OSError:
-                nlp = spacy.blank("de")
-            tokens = [tok.text.lower() for tok in nlp.tokenizer(src.strip())]
-            # Build a simple char-level fallback vocab mapping if no vocab available
-            # Just return the string as-is for now; grader may handle decoding
-            src = torch.tensor([[bos_idx] + [1] * len(tokens) + [eos_idx]],
-                               dtype=torch.long)
+            if src_vocab is not None:
+                import spacy
+                try:
+                    nlp = spacy.load("de_core_news_sm")
+                except OSError:
+                    nlp = spacy.blank("de")
+                tokens = [tok.text.lower() for tok in nlp.tokenizer(src.strip())]
+                ids = [src_vocab.bos_idx] + src_vocab.encode(tokens) + [src_vocab.eos_idx]
+                src = torch.tensor(ids, dtype=torch.long).unsqueeze(0)
+            else:
+                # No vocab available - return empty string
+                return ""
 
         # Handle list input
         if isinstance(src, list):
@@ -289,14 +306,13 @@ class Transformer(nn.Module):
             if src.dim() == 1:
                 src = src.unsqueeze(0)
 
-        device = next(self.parameters()).device
         src = src.to(device)
         B = src.size(0)
 
         if src_mask is None:
-            src_mask = (src == 0).unsqueeze(1).unsqueeze(2)
-        enc_out = self.encode(src, src_mask)
+            src_mask = (src == pad_idx).unsqueeze(1).unsqueeze(2)
 
+        enc_out = self.encode(src, src_mask)
         ys = torch.full((B, 1), bos_idx, dtype=torch.long, device=device)
         finished = torch.zeros(B, dtype=torch.bool, device=device)
 
@@ -312,4 +328,15 @@ class Transformer(nn.Module):
             if finished.all():
                 break
 
-        return ys
+        # Decode to string
+        results = []
+        for i in range(B):
+            seq = ys[i, 1:].tolist()
+            if eos_idx in seq:
+                seq = seq[:seq.index(eos_idx)]
+            if tgt_vocab is not None:
+                words = tgt_vocab.decode(seq)
+            else:
+                words = [str(t) for t in seq]
+            results.append(" ".join(words))
+        return results[0] if B == 1 else results

@@ -172,6 +172,7 @@ def main():
     # ── Final test BLEU ───────────────────────────────────────
     ckpt = torch.load(cfg['save_path'], map_location=device, weights_only=False)
     model.load_state_dict(ckpt['model_state'])
+    model.set_vocabs(src_vocab, tgt_vocab)
     test_bleu = evaluate_bleu(model, test_loader, src_vocab, tgt_vocab, device)
     print(f"\nTest BLEU (best ckpt): {test_bleu:.2f}")
     wandb.log({'test/bleu': test_bleu})
