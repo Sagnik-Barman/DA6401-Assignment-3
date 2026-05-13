@@ -1,0 +1,21 @@
+Loading Multi30k dataset …
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Src vocab size: 7853  |  Tgt vocab size: 5893
+Parameters: 8,978,949
+Epoch   1 | train_loss=8.7333 | val_loss=8.7377
+  ✓ Checkpoint saved (val_loss=8.7377)
+Epoch   2 | train_loss=8.7335 | val_loss=8.7377
+Epoch   3 | train_loss=8.7329 | val_loss=8.7377
+Epoch   4 | train_loss=8.7331 | val_loss=8.7377
+Traceback (most recent call last):
+  File "D:\Frameworks\DA6401-Assignment-3\train.py", line 182, in <module>
+    main()
+    ~~~~^^
+  File "D:\Frameworks\DA6401-Assignment-3\train.py", line 147, in main
+    val_bleu = evaluate_bleu(model, val_loader, src_vocab, tgt_vocab, device)
+  File "C:\Users\SAGNIK BARMAN\AppData\Local\Programs\Python\Python313\Lib\site-packages\torch\utils\_contextlib.py", line 124, in decorate_context
+    return func(*args, **kwargs)
+  File "D:\Frameworks\DA6401-Assignment-3\src\inference.py", line 47, in evaluate_bleu
+    bleu_metric = hf_evaluate.load('bleu')
+                  ^^^^^^^^^^^^^^^^
+AttributeError: module 'evaluate' has no attribute 'load'

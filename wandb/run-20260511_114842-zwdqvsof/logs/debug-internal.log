@@ -1,0 +1,20 @@
+{"time":"2026-05-11T11:48:44.4524254+05:30","level":"INFO","msg":"stream: starting","core version":"0.25.0"}
+{"time":"2026-05-11T11:48:46.9789404+05:30","level":"INFO","msg":"stream: created new stream","id":"zwdqvsof"}
+{"time":"2026-05-11T11:48:46.9789404+05:30","level":"INFO","msg":"handler: started","stream_id":"zwdqvsof"}
+{"time":"2026-05-11T11:48:46.9857109+05:30","level":"INFO","msg":"stream: started","id":"zwdqvsof"}
+{"time":"2026-05-11T11:48:46.9857109+05:30","level":"INFO","msg":"sender: started","stream_id":"zwdqvsof"}
+{"time":"2026-05-11T11:48:46.9857109+05:30","level":"INFO","msg":"writer: started","stream_id":"zwdqvsof"}
+{"time":"2026-05-11T11:58:55.1548837+05:30","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/files/ma25m024-indian-institute-of-technology-madras/da6401-assignment3/zwdqvsof/file_stream\": dial tcp: lookup api.wandb.ai: no such host"}
+{"time":"2026-05-11T11:58:57.5304062+05:30","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/files/ma25m024-indian-institute-of-technology-madras/da6401-assignment3/zwdqvsof/file_stream\": dial tcp: lookup api.wandb.ai: no such host"}
+{"time":"2026-05-11T12:11:32.2597409+05:30","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/files/ma25m024-indian-institute-of-technology-madras/da6401-assignment3/zwdqvsof/file_stream\": dial tcp: lookup api.wandb.ai: no such host"}
+{"time":"2026-05-11T12:11:41.4441925+05:30","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/files/ma25m024-indian-institute-of-technology-madras/da6401-assignment3/zwdqvsof/file_stream\": dial tcp: lookup api.wandb.ai: no such host"}
+{"time":"2026-05-11T16:07:59.0174532+05:30","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/files/ma25m024-indian-institute-of-technology-madras/da6401-assignment3/zwdqvsof/file_stream\": dial tcp: lookup api.wandb.ai: no such host"}
+{"time":"2026-05-11T16:08:31.1109794+05:30","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/files/ma25m024-indian-institute-of-technology-madras/da6401-assignment3/zwdqvsof/file_stream\": dial tcp: lookup api.wandb.ai: no such host"}
+{"time":"2026-05-11T16:09:31.1162403+05:30","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/files/ma25m024-indian-institute-of-technology-madras/da6401-assignment3/zwdqvsof/file_stream\": dial tcp: lookup api.wandb.ai: no such host"}
+{"time":"2026-05-11T16:10:31.1220378+05:30","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/files/ma25m024-indian-institute-of-technology-madras/da6401-assignment3/zwdqvsof/file_stream\": dial tcp: lookup api.wandb.ai: no such host"}
+{"time":"2026-05-11T16:47:50.4076009+05:30","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2026-05-11T16:47:50.8537976+05:30","level":"INFO","msg":"handler: operation stats","stats":{}}
+{"time":"2026-05-11T16:47:50.8953235+05:30","level":"INFO","msg":"stream: closing","id":"zwdqvsof"}
+{"time":"2026-05-11T16:47:50.8953235+05:30","level":"INFO","msg":"handler: closed","stream_id":"zwdqvsof"}
+{"time":"2026-05-11T16:47:50.8964349+05:30","level":"INFO","msg":"sender: closed","stream_id":"zwdqvsof"}
+{"time":"2026-05-11T16:47:50.8964349+05:30","level":"INFO","msg":"stream: closed","id":"zwdqvsof"}

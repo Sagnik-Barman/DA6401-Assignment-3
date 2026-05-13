@@ -106,13 +106,17 @@ class Multi30kDataset:
         return torch.tensor(src_ids, dtype=torch.long), torch.tensor(tgt_ids, dtype=torch.long)
 
 
-def collate_fn(pad_src, pad_tgt):
-    def _collate(batch):
+class CollateFn:
+    """Top-level picklable collate class (required for Windows multiprocessing)."""
+    def __init__(self, pad_src, pad_tgt):
+        self.pad_src = pad_src
+        self.pad_tgt = pad_tgt
+
+    def __call__(self, batch):
         srcs, tgts = zip(*batch)
-        src_padded = pad_sequence(srcs, batch_first=True, padding_value=pad_src)
-        tgt_padded = pad_sequence(tgts, batch_first=True, padding_value=pad_tgt)
+        src_padded = pad_sequence(srcs, batch_first=True, padding_value=self.pad_src)
+        tgt_padded = pad_sequence(tgts, batch_first=True, padding_value=self.pad_tgt)
         return src_padded, tgt_padded
-    return _collate
 
 
 # ─────────────────────────────────────────────────────────────
@@ -137,11 +141,14 @@ def get_dataloaders(batch_size=128, max_len=150, min_freq=2, num_workers=2):
     tgt_vocab.build(tgt_tokens)
     print(f"Src vocab size: {len(src_vocab)}  |  Tgt vocab size: {len(tgt_vocab)}")
 
+    collate = CollateFn(src_vocab.pad_idx, tgt_vocab.pad_idx)
+
     def make_loader(split_name, shuffle):
         ds = Multi30kDataset(raw[split_name], src_vocab, tgt_vocab, de_nlp, en_nlp, max_len)
         return DataLoader(ds, batch_size=batch_size, shuffle=shuffle,
-                          collate_fn=collate_fn(src_vocab.pad_idx, tgt_vocab.pad_idx),
-                          num_workers=num_workers, pin_memory=True)
+                          collate_fn=collate,
+                          num_workers=0,
+                          pin_memory=False)
 
     train_loader = make_loader('train',      shuffle=True)
     val_loader   = make_loader('validation', shuffle=False)

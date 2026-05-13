@@ -1,0 +1,17 @@
+{"time":"2026-05-13T03:23:03.3908436+05:30","level":"INFO","msg":"stream: starting","core version":"0.25.0"}
+{"time":"2026-05-13T03:23:05.9363707+05:30","level":"INFO","msg":"stream: created new stream","id":"k9i44lgn"}
+{"time":"2026-05-13T03:23:05.9363707+05:30","level":"INFO","msg":"handler: started","stream_id":"k9i44lgn"}
+{"time":"2026-05-13T03:23:05.9428172+05:30","level":"INFO","msg":"stream: started","id":"k9i44lgn"}
+{"time":"2026-05-13T03:23:05.9433554+05:30","level":"INFO","msg":"writer: started","stream_id":"k9i44lgn"}
+{"time":"2026-05-13T03:23:05.9433554+05:30","level":"INFO","msg":"sender: started","stream_id":"k9i44lgn"}
+{"time":"2026-05-13T04:03:09.9635757+05:30","level":"INFO","msg":"api: retrying HTTP error","status":500,"url":"https://api.wandb.ai/files/ma25m024-indian-institute-of-technology-madras/da6401-assignment3/k9i44lgn/file_stream","body":"{\"error\":\"context deadline exceeded\"}"}
+{"time":"2026-05-13T04:04:07.4470397+05:30","level":"INFO","msg":"api: retrying HTTP error","status":500,"url":"https://api.wandb.ai/files/ma25m024-indian-institute-of-technology-madras/da6401-assignment3/k9i44lgn/file_stream","body":"{\"error\":\"context deadline exceeded\"}"}
+{"time":"2026-05-13T04:05:07.2773688+05:30","level":"INFO","msg":"api: retrying HTTP error","status":500,"url":"https://api.wandb.ai/files/ma25m024-indian-institute-of-technology-madras/da6401-assignment3/k9i44lgn/file_stream","body":"{\"error\":\"context deadline exceeded\"}"}
+{"time":"2026-05-13T04:22:58.9015654+05:30","level":"INFO","msg":"api: retrying HTTP error","status":500,"url":"https://api.wandb.ai/files/ma25m024-indian-institute-of-technology-madras/da6401-assignment3/k9i44lgn/file_stream","body":"{\"error\":\"context deadline exceeded\"}"}
+{"time":"2026-05-13T04:23:57.6563468+05:30","level":"INFO","msg":"api: retrying HTTP error","status":500,"url":"https://api.wandb.ai/files/ma25m024-indian-institute-of-technology-madras/da6401-assignment3/k9i44lgn/file_stream","body":"{\"error\":\"context deadline exceeded\"}"}
+{"time":"2026-05-13T04:34:28.1287487+05:30","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2026-05-13T04:34:28.9165313+05:30","level":"INFO","msg":"handler: operation stats","stats":{}}
+{"time":"2026-05-13T04:34:28.9249107+05:30","level":"INFO","msg":"stream: closing","id":"k9i44lgn"}
+{"time":"2026-05-13T04:34:28.9254141+05:30","level":"INFO","msg":"handler: closed","stream_id":"k9i44lgn"}
+{"time":"2026-05-13T04:34:28.9259821+05:30","level":"INFO","msg":"sender: closed","stream_id":"k9i44lgn"}
+{"time":"2026-05-13T04:34:28.9259821+05:30","level":"INFO","msg":"stream: closed","id":"k9i44lgn"}

@@ -170,7 +170,7 @@ def main():
             print(f"  ✓ Checkpoint saved (val_loss={val_loss:.4f})")
 
     # ── Final test BLEU ───────────────────────────────────────
-    ckpt = torch.load(cfg['save_path'], map_location=device)
+    ckpt = torch.load(cfg['save_path'], map_location=device, weights_only=False)
     model.load_state_dict(ckpt['model_state'])
     test_bleu = evaluate_bleu(model, test_loader, src_vocab, tgt_vocab, device)
     print(f"\nTest BLEU (best ckpt): {test_bleu:.2f}")

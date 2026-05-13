@@ -163,7 +163,7 @@ def exp_attention_rollout(model_path, data, device):
     from src.masks import make_padding_mask
 
     train_loader, val_loader, _, src_vocab, tgt_vocab = data
-    ckpt  = torch.load(model_path, map_location=device)
+    ckpt  = torch.load(model_path, map_location=device, weights_only=False)
     cfg   = ckpt['cfg']
 
     model = build_model(src_vocab, tgt_vocab, cfg).to(device)

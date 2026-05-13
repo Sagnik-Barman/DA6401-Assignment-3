@@ -1,0 +1,21 @@
+2026-05-13 20:58:15,591 INFO    MainThread:24200 [wandb_init.py:setup_run_log_directory():717] Logging user logs to D:\Frameworks\DA6401-Assignment-3\wandb\run-20260513_205815-q8j3kx0n\logs\debug.log
+2026-05-13 20:58:15,591 INFO    MainThread:24200 [wandb_init.py:setup_run_log_directory():718] Logging internal logs to D:\Frameworks\DA6401-Assignment-3\wandb\run-20260513_205815-q8j3kx0n\logs\debug-internal.log
+2026-05-13 20:58:15,591 INFO    MainThread:24200 [wandb_init.py:init():844] calling init triggers
+2026-05-13 20:58:15,591 INFO    MainThread:24200 [wandb_init.py:init():849] wandb.init called with sweep_config: {}
+config: {'batch_size': 128, 'max_len': 150, 'min_freq': 2, 'num_workers': 2, 'd_model': 256, 'num_heads': 8, 'num_layers': 3, 'd_ff': 512, 'dropout': 0.1, 'epochs': 20, 'warmup_steps': 4000, 'label_smoothing': 0.1, 'clip': 1.0, 'wandb_project': 'da6401-assignment3', 'variant': 'fixed_lr', '_wandb': {}}
+2026-05-13 20:58:15,592 INFO    MainThread:24200 [wandb_init.py:init():892] starting backend
+2026-05-13 20:58:15,592 INFO    MainThread:24200 [wandb_init.py:init():895] sending inform_init request
+2026-05-13 20:58:15,594 INFO    MainThread:24200 [wandb_init.py:init():903] backend started and connected
+2026-05-13 20:58:15,599 INFO    MainThread:24200 [wandb_init.py:init():973] updated telemetry
+2026-05-13 20:58:15,644 INFO    MainThread:24200 [wandb_init.py:init():997] communicating run to backend with 90.0 second timeout
+2026-05-13 20:58:17,236 INFO    MainThread:24200 [wandb_init.py:init():1042] starting run threads in backend
+2026-05-13 20:58:17,417 INFO    MainThread:24200 [wandb_run.py:_console_start():2524] atexit reg
+2026-05-13 20:58:17,418 INFO    MainThread:24200 [wandb_run.py:_redirect():2373] redirect: wrap_raw
+2026-05-13 20:58:17,418 INFO    MainThread:24200 [wandb_run.py:_redirect():2442] Wrapping output streams.
+2026-05-13 20:58:17,418 INFO    MainThread:24200 [wandb_run.py:_redirect():2465] Redirects installed.
+2026-05-13 20:58:17,420 INFO    MainThread:24200 [wandb_init.py:init():1082] run started, returning control to user process
+2026-05-13 22:12:16,899 INFO    MainThread:24200 [wandb_run.py:_finish():2291] finishing run ma25m024-indian-institute-of-technology-madras/da6401-assignment3/q8j3kx0n
+2026-05-13 22:12:16,902 INFO    MainThread:24200 [wandb_run.py:_atexit_cleanup():2490] got exitcode: 0
+2026-05-13 22:12:16,904 INFO    MainThread:24200 [wandb_run.py:_restore():2472] restore
+2026-05-13 22:12:16,904 INFO    MainThread:24200 [wandb_run.py:_restore():2478] restore done
+2026-05-13 22:12:20,014 INFO    MainThread:24200 [wandb_run.py:_footer_sync_info():3868] logging synced files

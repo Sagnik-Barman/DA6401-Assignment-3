@@ -1,0 +1,82 @@
+Loading Multi30k dataset …
+Src vocab size: 7853  |  Tgt vocab size: 5893
+Parameters: 8,978,949
+Epoch   1 | train_loss=5.3776 | val_loss=4.0212
+  ✓ Checkpoint saved (val_loss=4.0212)
+Epoch   2 | train_loss=3.7514 | val_loss=3.3967
+  ✓ Checkpoint saved (val_loss=3.3967)
+Epoch   3 | train_loss=3.3138 | val_loss=3.1459
+  ✓ Checkpoint saved (val_loss=3.1459)
+Epoch   4 | train_loss=3.0680 | val_loss=2.9965
+  ✓ Checkpoint saved (val_loss=2.9965)
+That's 100 lines that end in a tokenized period ('.')
+It looks like you forgot to detokenize your test data, which may hurt your score.
+If you insist your data is detokenized, or don't care, you can suppress this message with the `force` parameter.
+Epoch   5 | train_loss=2.9122 | val_loss=2.9220 | val_bleu=29.63
+  ✓ Checkpoint saved (val_loss=2.9220)
+Epoch   6 | train_loss=2.7996 | val_loss=2.8552
+  ✓ Checkpoint saved (val_loss=2.8552)
+Epoch   7 | train_loss=2.7039 | val_loss=2.8115
+  ✓ Checkpoint saved (val_loss=2.8115)
+Epoch   8 | train_loss=2.6329 | val_loss=2.7736
+  ✓ Checkpoint saved (val_loss=2.7736)
+Epoch   9 | train_loss=2.5688 | val_loss=2.7686
+  ✓ Checkpoint saved (val_loss=2.7686)
+That's 100 lines that end in a tokenized period ('.')
+It looks like you forgot to detokenize your test data, which may hurt your score.
+If you insist your data is detokenized, or don't care, you can suppress this message with the `force` parameter.
+Epoch  10 | train_loss=2.5152 | val_loss=2.7432 | val_bleu=36.61
+  ✓ Checkpoint saved (val_loss=2.7432)
+Epoch  11 | train_loss=2.4671 | val_loss=2.7330
+  ✓ Checkpoint saved (val_loss=2.7330)
+Epoch  12 | train_loss=2.4249 | val_loss=2.7313
+  ✓ Checkpoint saved (val_loss=2.7313)
+Epoch  13 | train_loss=2.3874 | val_loss=2.7239
+  ✓ Checkpoint saved (val_loss=2.7239)
+Epoch  14 | train_loss=2.3477 | val_loss=2.7069
+  ✓ Checkpoint saved (val_loss=2.7069)
+That's 100 lines that end in a tokenized period ('.')
+It looks like you forgot to detokenize your test data, which may hurt your score.
+If you insist your data is detokenized, or don't care, you can suppress this message with the `force` parameter.
+Epoch  15 | train_loss=2.3145 | val_loss=2.7033 | val_bleu=37.43
+  ✓ Checkpoint saved (val_loss=2.7033)
+Epoch  16 | train_loss=2.2846 | val_loss=2.6916
+  ✓ Checkpoint saved (val_loss=2.6916)
+Epoch  17 | train_loss=2.2576 | val_loss=2.6992
+Epoch  18 | train_loss=2.2308 | val_loss=2.6966
+Epoch  19 | train_loss=2.2027 | val_loss=2.7056
+That's 100 lines that end in a tokenized period ('.')
+It looks like you forgot to detokenize your test data, which may hurt your score.
+If you insist your data is detokenized, or don't care, you can suppress this message with the `force` parameter.
+Epoch  20 | train_loss=2.1791 | val_loss=2.6901 | val_bleu=37.86
+  ✓ Checkpoint saved (val_loss=2.6901)
+Epoch  21 | train_loss=2.1586 | val_loss=2.6990
+Epoch  22 | train_loss=2.1356 | val_loss=2.7010
+Epoch  23 | train_loss=2.1159 | val_loss=2.6945
+Epoch  24 | train_loss=2.0975 | val_loss=2.7068
+That's 100 lines that end in a tokenized period ('.')
+It looks like you forgot to detokenize your test data, which may hurt your score.
+If you insist your data is detokenized, or don't care, you can suppress this message with the `force` parameter.
+Epoch  25 | train_loss=2.0780 | val_loss=2.7061 | val_bleu=38.67
+Epoch  26 | train_loss=2.0591 | val_loss=2.7142
+Epoch  27 | train_loss=2.0422 | val_loss=2.7093
+Epoch  28 | train_loss=2.0282 | val_loss=2.7190
+Epoch  29 | train_loss=2.0119 | val_loss=2.7291
+That's 100 lines that end in a tokenized period ('.')
+It looks like you forgot to detokenize your test data, which may hurt your score.
+If you insist your data is detokenized, or don't care, you can suppress this message with the `force` parameter.
+Epoch  30 | train_loss=1.9974 | val_loss=2.7311 | val_bleu=38.53
+Traceback (most recent call last):
+  File "D:\Frameworks\DA6401-Assignment-3\train.py", line 182, in <module>
+    main()
+    ~~~~^^
+  File "D:\Frameworks\DA6401-Assignment-3\train.py", line 173, in main
+    ckpt = torch.load(cfg['save_path'], map_location=device)
+  File "C:\Users\SAGNIK BARMAN\AppData\Local\Programs\Python\Python313\Lib\site-packages\torch\serialization.py", line 1578, in load
+    raise pickle.UnpicklingError(_get_wo_message(str(e))) from None
+_pickle.UnpicklingError: Weights only load failed. This file can still be loaded, to do so you have two options, [1mdo those steps only if you trust the source of the checkpoint[0m.
+	(1) In PyTorch 2.6, we changed the default value of the `weights_only` argument in `torch.load` from `False` to `True`. Re-running `torch.load` with `weights_only` set to `False` will likely succeed, but it can result in arbitrary code execution. Do it only if you got the file from a trusted source.
+	(2) Alternatively, to load with `weights_only=True` please check the recommended steps in the following error message.
+	WeightsUnpickler error: Unsupported global: GLOBAL src.data.Vocabulary was not an allowed global by default. Please use `torch.serialization.add_safe_globals([src.data.Vocabulary])` or the `torch.serialization.safe_globals([src.data.Vocabulary])` context manager to allowlist this global if you trust this class/function.
+
+Check the documentation of torch.load to learn more about types accepted by default with weights_only https://pytorch.org/docs/stable/generated/torch.load.html.

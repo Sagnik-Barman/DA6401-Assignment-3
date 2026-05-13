@@ -16,14 +16,13 @@ def train_epoch(model, loader, criterion, optimizer, scheduler,
         src = src.to(device)
         tgt = tgt.to(device)
 
-        # tgt_inp excludes last token; tgt_out excludes first (BOS)
         tgt_inp = tgt[:, :-1]
         tgt_out = tgt[:, 1:]
 
         src_mask = make_padding_mask(src, src_vocab.pad_idx).to(device)
         tgt_mask = make_tgt_mask(tgt_inp, tgt_vocab.pad_idx).to(device)
 
-        logits = model(src, tgt_inp, src_mask, tgt_mask)        # (B, seq, vocab)
+        logits = model(src, tgt_inp, src_mask, tgt_mask)
 
         B, seq, vocab = logits.shape
         loss = criterion(logits.reshape(B * seq, vocab), tgt_out.reshape(B * seq))
@@ -31,9 +30,12 @@ def train_epoch(model, loader, criterion, optimizer, scheduler,
         optimizer.zero_grad()
         loss.backward()
         torch.nn.utils.clip_grad_norm_(model.parameters(), clip)
+
+        # Step scheduler BEFORE optimizer (sets the LR for this step)
         if scheduler is not None:
             scheduler.step()
-        optimizer.step() if scheduler is None else None
+
+        optimizer.step()   # ALWAYS call optimizer.step()
 
         total_loss += loss.item()
         n_batches  += 1

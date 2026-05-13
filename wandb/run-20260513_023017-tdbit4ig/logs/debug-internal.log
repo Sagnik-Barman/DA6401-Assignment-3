@@ -1,0 +1,11 @@
+{"time":"2026-05-13T02:30:19.4704691+05:30","level":"INFO","msg":"stream: starting","core version":"0.25.0"}
+{"time":"2026-05-13T02:30:20.9706642+05:30","level":"INFO","msg":"stream: created new stream","id":"tdbit4ig"}
+{"time":"2026-05-13T02:30:20.9713299+05:30","level":"INFO","msg":"handler: started","stream_id":"tdbit4ig"}
+{"time":"2026-05-13T02:30:20.9735167+05:30","level":"INFO","msg":"stream: started","id":"tdbit4ig"}
+{"time":"2026-05-13T02:30:20.9735167+05:30","level":"INFO","msg":"writer: started","stream_id":"tdbit4ig"}
+{"time":"2026-05-13T02:30:20.9740439+05:30","level":"INFO","msg":"sender: started","stream_id":"tdbit4ig"}
+{"time":"2026-05-13T02:30:24.6493925+05:30","level":"INFO","msg":"stream: closing","id":"tdbit4ig"}
+{"time":"2026-05-13T02:30:27.3870848+05:30","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2026-05-13T02:30:27.8184943+05:30","level":"INFO","msg":"handler: closed","stream_id":"tdbit4ig"}
+{"time":"2026-05-13T02:30:27.8184943+05:30","level":"INFO","msg":"sender: closed","stream_id":"tdbit4ig"}
+{"time":"2026-05-13T02:30:27.8184943+05:30","level":"INFO","msg":"stream: closed","id":"tdbit4ig"}

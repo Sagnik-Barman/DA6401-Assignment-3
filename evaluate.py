@@ -17,7 +17,7 @@ def main():
 
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
-    ckpt      = torch.load(args.model_path, map_location=device)
+    ckpt      = torch.load(args.model_path, map_location=device, weights_only=False)
     cfg       = ckpt['cfg']
     src_vocab = ckpt['src_vocab']
     tgt_vocab = ckpt['tgt_vocab']

@@ -1,0 +1,18 @@
+{"time":"2026-05-13T08:00:04.9396935+05:30","level":"INFO","msg":"stream: starting","core version":"0.25.0"}
+{"time":"2026-05-13T08:00:06.0432607+05:30","level":"INFO","msg":"stream: created new stream","id":"jey7dr4f"}
+{"time":"2026-05-13T08:00:06.0432607+05:30","level":"INFO","msg":"handler: started","stream_id":"jey7dr4f"}
+{"time":"2026-05-13T08:00:06.0460337+05:30","level":"INFO","msg":"stream: started","id":"jey7dr4f"}
+{"time":"2026-05-13T08:00:06.0460337+05:30","level":"INFO","msg":"writer: started","stream_id":"jey7dr4f"}
+{"time":"2026-05-13T08:00:06.0460337+05:30","level":"INFO","msg":"sender: started","stream_id":"jey7dr4f"}
+{"time":"2026-05-13T08:32:56.9799076+05:30","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/files/ma25m024-indian-institute-of-technology-madras/da6401-assignment3/jey7dr4f/file_stream\": read tcp 192.168.0.140:53793->34.8.250.101:443: wsarecv: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond."}
+{"time":"2026-05-13T08:32:59.4109998+05:30","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/files/ma25m024-indian-institute-of-technology-madras/da6401-assignment3/jey7dr4f/file_stream\": dial tcp: lookup api.wandb.ai: no such host"}
+{"time":"2026-05-13T08:33:03.6600746+05:30","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/files/ma25m024-indian-institute-of-technology-madras/da6401-assignment3/jey7dr4f/file_stream\": dial tcp: lookup api.wandb.ai: no such host"}
+{"time":"2026-05-13T08:33:11.8322243+05:30","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/files/ma25m024-indian-institute-of-technology-madras/da6401-assignment3/jey7dr4f/file_stream\": dial tcp: lookup api.wandb.ai: no such host"}
+{"time":"2026-05-13T08:33:31.4670948+05:30","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/files/ma25m024-indian-institute-of-technology-madras/da6401-assignment3/jey7dr4f/file_stream\": dial tcp: lookup api.wandb.ai: no such host"}
+{"time":"2026-05-13T08:34:11.3480304+05:30","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/files/ma25m024-indian-institute-of-technology-madras/da6401-assignment3/jey7dr4f/file_stream\": dial tcp: lookup api.wandb.ai: no such host"}
+{"time":"2026-05-13T09:34:38.1858776+05:30","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2026-05-13T09:34:38.6113997+05:30","level":"INFO","msg":"handler: operation stats","stats":{}}
+{"time":"2026-05-13T09:34:38.6289135+05:30","level":"INFO","msg":"stream: closing","id":"jey7dr4f"}
+{"time":"2026-05-13T09:34:38.6289135+05:30","level":"INFO","msg":"handler: closed","stream_id":"jey7dr4f"}
+{"time":"2026-05-13T09:34:38.6295394+05:30","level":"INFO","msg":"sender: closed","stream_id":"jey7dr4f"}
+{"time":"2026-05-13T09:34:38.6295394+05:30","level":"INFO","msg":"stream: closed","id":"jey7dr4f"}

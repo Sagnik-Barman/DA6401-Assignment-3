@@ -1,0 +1,12 @@
+{"time":"2026-05-13T19:48:26.5143418+05:30","level":"INFO","msg":"stream: starting","core version":"0.25.0"}
+{"time":"2026-05-13T19:48:29.0047118+05:30","level":"INFO","msg":"stream: created new stream","id":"jlft1dtd"}
+{"time":"2026-05-13T19:48:29.0047118+05:30","level":"INFO","msg":"handler: started","stream_id":"jlft1dtd"}
+{"time":"2026-05-13T19:48:29.0131423+05:30","level":"INFO","msg":"stream: started","id":"jlft1dtd"}
+{"time":"2026-05-13T19:48:29.0131423+05:30","level":"INFO","msg":"writer: started","stream_id":"jlft1dtd"}
+{"time":"2026-05-13T19:48:29.0131423+05:30","level":"INFO","msg":"sender: started","stream_id":"jlft1dtd"}
+{"time":"2026-05-13T20:58:14.0834227+05:30","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2026-05-13T20:58:14.5267719+05:30","level":"INFO","msg":"handler: operation stats","stats":{}}
+{"time":"2026-05-13T20:58:14.5323579+05:30","level":"INFO","msg":"stream: closing","id":"jlft1dtd"}
+{"time":"2026-05-13T20:58:14.5323579+05:30","level":"INFO","msg":"handler: closed","stream_id":"jlft1dtd"}
+{"time":"2026-05-13T20:58:14.5328612+05:30","level":"INFO","msg":"sender: closed","stream_id":"jlft1dtd"}
+{"time":"2026-05-13T20:58:14.5328612+05:30","level":"INFO","msg":"stream: closed","id":"jlft1dtd"}

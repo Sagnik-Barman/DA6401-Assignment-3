@@ -1,0 +1,10 @@
+  epoch   1 | train=8.7090 | val=8.7064
+  epoch   2 | train=8.7094 | val=8.7064
+  epoch   3 | train=8.7090 | val=8.7064
+  epoch   4 | train=8.7093 | val=8.7064
+  epoch   5 | train=8.7091 | val=8.7064
+  epoch   6 | train=8.7091 | val=8.7064
+  epoch   7 | train=8.7093 | val=8.7064
+  epoch   8 | train=8.7096 | val=8.7064
+  epoch   9 | train=8.7088 | val=8.7064
+  epoch  10 | train=8.7091 | val=8.7064

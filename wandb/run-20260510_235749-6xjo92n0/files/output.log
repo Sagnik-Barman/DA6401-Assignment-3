@@ -1,0 +1,52 @@
+Loading Multi30k dataset …
+README.md: 1.15kB [00:00, 2.03MB/s]
+C:\Users\SAGNIK BARMAN\AppData\Local\Programs\Python\Python313\Lib\site-packages\huggingface_hub\file_download.py:138: UserWarning: `huggingface_hub` cache-system uses symlinks by default to efficiently store duplicated files but your machine does not support them in C:\Users\SAGNIK BARMAN\.cache\huggingface\hub\datasets--bentrevett--multi30k. Caching files will still work but in a degraded version that might require more space on your disk. This warning can be disabled by setting the `HF_HUB_DISABLE_SYMLINKS_WARNING` environment variable. For more details, see https://huggingface.co/docs/huggingface_hub/how-to-cache#limitations.
+To support symlinks on Windows, you either need to activate Developer Mode or to run Python as an administrator. In order to activate developer mode, see this article: https://docs.microsoft.com/en-us/windows/apps/get-started/enable-your-device-for-development
+  warnings.warn(message)
+train.jsonl: 4.60MB [00:00, 23.8MB/s]
+val.jsonl: 164kB [00:00, 7.16MB/s]
+test.jsonl: 156kB [00:00, 37.7MB/s]
+Generating train split: 100%|█| 29000/29000 [00:00<00:00, 698761
+Generating validation split: 100%|█| 1014/1014 [00:00<00:00, 151
+Generating test split: 100%|█| 1000/1000 [00:00<00:00, 141828.83
+Src vocab size: 7853  |  Tgt vocab size: 5893
+Parameters: 8,978,949
+C:\Users\SAGNIK BARMAN\AppData\Local\Programs\Python\Python313\Lib\site-packages\torch\utils\data\dataloader.py:1118: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+  super().__init__(loader)
+C:\Users\SAGNIK BARMAN\AppData\Local\Programs\Python\Python313\Lib\site-packages\torch\utils\data\dataloader.py:433: UserWarning: Got pickle error when attempting to start a worker Process. This might be because the worker Process arguments are not picklable. Python 3.14+ changed the multiprocessing start method in non-Mac POSIX platforms to 'forkserver', which requires the worker Process arguments to be picklable. You can also try multiprocessing.set_start_method('fork').
+  return _MultiProcessingDataLoaderIter(self)
+Traceback (most recent call last):
+  File "D:\Frameworks\DA6401-Assignment-3\train.py", line 182, in <module>
+    main()
+    ~~~~^^
+  File "D:\Frameworks\DA6401-Assignment-3\train.py", line 138, in main
+    train_loss = train_epoch(
+        model, train_loader, criterion, optimizer, scheduler,
+        src_vocab, tgt_vocab, device, cfg['clip'], cfg['log_interval']
+    )
+  File "D:\Frameworks\DA6401-Assignment-3\src\train_utils.py", line 15, in train_epoch
+    for batch_idx, (src, tgt) in enumerate(loader):
+                                 ~~~~~~~~~^^^^^^^^
+  File "C:\Users\SAGNIK BARMAN\AppData\Local\Programs\Python\Python313\Lib\site-packages\torch\utils\data\dataloader.py", line 500, in __iter__
+    return self._get_iterator()
+           ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\SAGNIK BARMAN\AppData\Local\Programs\Python\Python313\Lib\site-packages\torch\utils\data\dataloader.py", line 433, in _get_iterator
+    return _MultiProcessingDataLoaderIter(self)
+  File "C:\Users\SAGNIK BARMAN\AppData\Local\Programs\Python\Python313\Lib\site-packages\torch\utils\data\dataloader.py", line 1192, in __init__
+    w.start()
+    ~~~~~~~^^
+  File "C:\Users\SAGNIK BARMAN\AppData\Local\Programs\Python\Python313\Lib\multiprocessing\process.py", line 121, in start
+    self._popen = self._Popen(self)
+                  ~~~~~~~~~~~^^^^^^
+  File "C:\Users\SAGNIK BARMAN\AppData\Local\Programs\Python\Python313\Lib\multiprocessing\context.py", line 224, in _Popen
+    return _default_context.get_context().Process._Popen(process_obj)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\SAGNIK BARMAN\AppData\Local\Programs\Python\Python313\Lib\multiprocessing\context.py", line 337, in _Popen
+    return Popen(process_obj)
+  File "C:\Users\SAGNIK BARMAN\AppData\Local\Programs\Python\Python313\Lib\multiprocessing\popen_spawn_win32.py", line 97, in __init__
+    reduction.dump(process_obj, to_child)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SAGNIK BARMAN\AppData\Local\Programs\Python\Python313\Lib\multiprocessing\reduction.py", line 60, in dump
+    ForkingPickler(file, protocol).dump(obj)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+AttributeError: Can't get local object 'collate_fn.<locals>._collate'

@@ -1,0 +1,53 @@
+Loading Multi30k dataset …
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Src vocab size: 7853  |  Tgt vocab size: 5893
+Parameters: 8,978,949
+Epoch   1 | train_loss=8.7319 | val_loss=8.7331
+  ✓ Checkpoint saved (val_loss=8.7331)
+Epoch   2 | train_loss=8.7315 | val_loss=8.7331
+Epoch   3 | train_loss=8.7315 | val_loss=8.7331
+Epoch   4 | train_loss=8.7321 | val_loss=8.7331
+Epoch   5 | train_loss=8.7318 | val_loss=8.7331 | val_bleu=0.00
+Epoch   6 | train_loss=8.7315 | val_loss=8.7331
+Epoch   7 | train_loss=8.7317 | val_loss=8.7331
+Epoch   8 | train_loss=8.7318 | val_loss=8.7331
+Epoch   9 | train_loss=8.7318 | val_loss=8.7331
+Epoch  10 | train_loss=8.7317 | val_loss=8.7331 | val_bleu=0.00
+Epoch  11 | train_loss=8.7315 | val_loss=8.7331
+Epoch  12 | train_loss=8.7316 | val_loss=8.7331
+Epoch  13 | train_loss=8.7318 | val_loss=8.7331
+Epoch  14 | train_loss=8.7316 | val_loss=8.7331
+Epoch  15 | train_loss=8.7316 | val_loss=8.7331 | val_bleu=0.00
+Epoch  16 | train_loss=8.7318 | val_loss=8.7331
+Epoch  17 | train_loss=8.7318 | val_loss=8.7331
+Epoch  18 | train_loss=8.7318 | val_loss=8.7331
+Epoch  19 | train_loss=8.7320 | val_loss=8.7331
+Epoch  20 | train_loss=8.7318 | val_loss=8.7331 | val_bleu=0.00
+Epoch  21 | train_loss=8.7317 | val_loss=8.7331
+Epoch  22 | train_loss=8.7316 | val_loss=8.7331
+Traceback (most recent call last):
+  File "D:\Frameworks\DA6401-Assignment-3\train.py", line 182, in <module>
+    main()
+    ~~~~^^
+  File "D:\Frameworks\DA6401-Assignment-3\train.py", line 138, in main
+    train_loss = train_epoch(
+        model, train_loader, criterion, optimizer, scheduler,
+        src_vocab, tgt_vocab, device, cfg['clip'], cfg['log_interval']
+    )
+  File "D:\Frameworks\DA6401-Assignment-3\src\train_utils.py", line 15, in train_epoch
+    for batch_idx, (src, tgt) in enumerate(loader):
+                                 ~~~~~~~~~^^^^^^^^
+  File "C:\Users\SAGNIK BARMAN\AppData\Local\Programs\Python\Python313\Lib\site-packages\torch\utils\data\dataloader.py", line 741, in __next__
+    data = self._next_data()
+  File "C:\Users\SAGNIK BARMAN\AppData\Local\Programs\Python\Python313\Lib\site-packages\torch\utils\data\dataloader.py", line 801, in _next_data
+    data = self._dataset_fetcher.fetch(index)  # may raise StopIteration
+  File "C:\Users\SAGNIK BARMAN\AppData\Local\Programs\Python\Python313\Lib\site-packages\torch\utils\data\_utils\fetch.py", line 54, in fetch
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+            ~~~~~~~~~~~~^^^^^
+  File "D:\Frameworks\DA6401-Assignment-3\src\data.py", line 102, in __getitem__
+    src_t = tokenize(row['de'], self.de_nlp)[:self.max_len]
+            ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Frameworks\DA6401-Assignment-3\src\data.py", line 82, in tokenize
+    return [tok.text.lower() for tok in nlp.tokenizer(text.strip())]
+                                        ~~~~~~~~~~~~~^^^^^^^^^^^^^^
+KeyboardInterrupt
