@@ -1,3 +1,5 @@
+# Root-level model.py for Gradescope autograder compatibility
+# Re-exports everything from src.model
 from src.model import (
     scaled_dot_product_attention,
     MultiHeadAttention,
@@ -10,5 +12,3 @@ from src.model import (
     Decoder,
     Transformer,
 )
-from src.masks import make_padding_mask, make_causal_mask, make_tgt_mask
-from src.optim import LabelSmoothingLoss, NoamScheduler
