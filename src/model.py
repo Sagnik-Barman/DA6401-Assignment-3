@@ -250,6 +250,9 @@ class Transformer(nn.Module):
         for p in self.parameters():
             if p.dim() > 1:
                 nn.init.xavier_uniform_(p)
+        # Vocab placeholders - set via set_vocabs() or load_with_vocabs()
+        self.src_vocab = None
+        self.tgt_vocab = None
 
     def forward(self, src, tgt, src_mask=None, tgt_mask=None):
         enc_out = self.encoder(src, src_mask)

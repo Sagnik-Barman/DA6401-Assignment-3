@@ -160,8 +160,9 @@ def main():
 
         if val_loss < best_val_loss:
             best_val_loss = val_loss
+            model.set_vocabs(src_vocab, tgt_vocab)
             torch.save({
-                'epoch':      epoch,
+                'epoch':       epoch,
                 'model_state': model.state_dict(),
                 'cfg':         cfg,
                 'src_vocab':   src_vocab,

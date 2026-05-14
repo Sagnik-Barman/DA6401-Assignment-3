@@ -9,14 +9,8 @@ from src.model     import Transformer
 from src.inference import evaluate_bleu
 
 
-def main():
-    parser = argparse.ArgumentParser()
-    parser.add_argument('--model_path', default='checkpoints/best_model.pt')
-    args = parser.parse_args()
-
-    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-
-    ckpt      = torch.load(args.model_path, map_location=device, weights_only=False)
+def load_model(model_path, device):
+    ckpt      = torch.load(model_path, map_location=device, weights_only=False)
     cfg       = ckpt['cfg']
     src_vocab = ckpt['src_vocab']
     tgt_vocab = ckpt['tgt_vocab']
@@ -33,8 +27,24 @@ def main():
         pos_encoding   = cfg.get('pos_encoding', 'sinusoidal'),
     ).to(device)
     model.load_state_dict(ckpt['model_state'])
-    model.set_vocabs(src_vocab, tgt_vocab)   # attach vocabs for infer()
-    print(f"Loaded checkpoint from epoch {ckpt['epoch']}")
+    model.set_vocabs(src_vocab, tgt_vocab)
+    return model, src_vocab, tgt_vocab, cfg
+
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--model_path', default='checkpoints/best_model.pt')
+    args = parser.parse_args()
+
+    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+    model, src_vocab, tgt_vocab, cfg = load_model(args.model_path, device)
+    print(f"Model loaded. Testing infer() with a sample string...")
+
+    # Quick sanity check
+    sample = "ein hund läuft über das gras ."
+    result = model.infer(sample)
+    print(f"  DE: {sample}")
+    print(f"  EN: {result}")
 
     _, _, test_loader, _, _ = get_dataloaders(
         batch_size  = 64,
