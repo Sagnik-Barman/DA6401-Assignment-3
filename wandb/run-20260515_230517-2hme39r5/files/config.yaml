@@ -1,0 +1,94 @@
+_wandb:
+    value:
+        cli_version: 0.25.0
+        e:
+            udntyp2pfi0l9iaf1n3ru2ngvxs3wjdu:
+                args:
+                    - --exp
+                    - learned_pos
+                codePath: ablations.py
+                codePathLocal: ablations.py
+                cpu_count: 10
+                cpu_count_logical: 20
+                cudaVersion: "12.7"
+                disk:
+                    /:
+                        total: "391247818752"
+                        used: "290018734080"
+                email: ma25m024@smail.iitm.ac.in
+                executable: C:\Users\SAGNIK BARMAN\AppData\Local\Programs\Python\Python313\python.exe
+                git:
+                    commit: 62a179afd2a866094fba33749d2175b8bedeb1f9
+                    remote: https://github.com/Sagnik-Barman/DA6401-Assignment-3.git
+                gpu: NVIDIA GeForce RTX 4050 Laptop GPU
+                gpu_count: 1
+                gpu_nvidia:
+                    - architecture: Ada
+                      cudaCores: 2560
+                      memoryTotal: "6439305216"
+                      name: NVIDIA GeForce RTX 4050 Laptop GPU
+                      uuid: GPU-67b527b3-4672-3c72-dfef-7aedde5b2cb5
+                host: DESKTOP-HKBG4RS
+                memory:
+                    total: "24823836672"
+                os: Windows-11-10.0.26200-SP0
+                program: D:\Frameworks\DA6401-Assignment-3\ablations.py
+                python: CPython 3.13.5
+                root: D:\Frameworks\DA6401-Assignment-3
+                startedAt: "2026-05-15T17:35:17.360364Z"
+                writerId: udntyp2pfi0l9iaf1n3ru2ngvxs3wjdu
+        m: []
+        python_version: 3.13.5
+        t:
+            "1":
+                - 1
+                - 33
+                - 49
+                - 51
+            "2":
+                - 1
+                - 33
+                - 49
+                - 51
+            "3":
+                - 2
+                - 13
+                - 16
+            "4": 3.13.5
+            "5": 0.25.0
+            "8":
+                - 3
+            "10":
+                - 20
+            "12": 0.25.0
+            "13": windows-amd64
+batch_size:
+    value: 128
+clip:
+    value: 1
+d_ff:
+    value: 512
+d_model:
+    value: 256
+dropout:
+    value: 0.1
+epochs:
+    value: 20
+label_smoothing:
+    value: 0.1
+max_len:
+    value: 150
+min_freq:
+    value: 2
+num_heads:
+    value: 8
+num_layers:
+    value: 3
+num_workers:
+    value: 2
+pos_encoding:
+    value: sinusoidal
+wandb_project:
+    value: da6401-assignment3
+warmup_steps:
+    value: 400
