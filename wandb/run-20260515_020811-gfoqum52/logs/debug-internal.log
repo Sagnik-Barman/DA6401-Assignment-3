@@ -1,0 +1,11 @@
+{"time":"2026-05-15T02:08:13.8126869+05:30","level":"INFO","msg":"stream: starting","core version":"0.25.0"}
+{"time":"2026-05-15T02:08:16.389684+05:30","level":"INFO","msg":"stream: created new stream","id":"gfoqum52"}
+{"time":"2026-05-15T02:08:16.389684+05:30","level":"INFO","msg":"handler: started","stream_id":"gfoqum52"}
+{"time":"2026-05-15T02:08:16.3966414+05:30","level":"INFO","msg":"stream: started","id":"gfoqum52"}
+{"time":"2026-05-15T02:08:16.3966414+05:30","level":"INFO","msg":"writer: started","stream_id":"gfoqum52"}
+{"time":"2026-05-15T02:08:16.3966414+05:30","level":"INFO","msg":"sender: started","stream_id":"gfoqum52"}
+{"time":"2026-05-15T02:08:19.895148+05:30","level":"INFO","msg":"stream: closing","id":"gfoqum52"}
+{"time":"2026-05-15T02:08:22.2968879+05:30","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2026-05-15T02:08:23.7724707+05:30","level":"INFO","msg":"handler: closed","stream_id":"gfoqum52"}
+{"time":"2026-05-15T02:08:23.7731994+05:30","level":"INFO","msg":"sender: closed","stream_id":"gfoqum52"}
+{"time":"2026-05-15T02:08:23.7731994+05:30","level":"INFO","msg":"stream: closed","id":"gfoqum52"}

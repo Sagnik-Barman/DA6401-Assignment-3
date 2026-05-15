@@ -25,7 +25,7 @@ from src.masks       import make_padding_mask, make_tgt_mask
 BASE_CFG = dict(
     batch_size=128, max_len=150, min_freq=2, num_workers=2,
     d_model=256, num_heads=8, num_layers=3, d_ff=512, dropout=0.1,
-    epochs=20, warmup_steps=4000, label_smoothing=0.1,
+    epochs=20, warmup_steps=400, label_smoothing=0.1,
     clip=1.0, wandb_project='da6401-assignment3',
 )
 
@@ -41,11 +41,12 @@ def build_model(src_vocab, tgt_vocab, cfg, pos_encoding='sinusoidal'):
 
 
 def run_training(model, train_loader, val_loader, src_vocab, tgt_vocab,
-                 cfg, scheduler_obj, criterion, device, extra_hooks=None):
+                 cfg, sched, criterion, device, extra_hooks=None, optimizer=None):
     """Generic training loop returning (train_losses, val_losses)."""
     train_losses, val_losses = [], []
-    optimizer = torch.optim.Adam(model.parameters(), lr=0, betas=(0.9, 0.98), eps=1e-9)
-    sched = scheduler_obj(optimizer) if callable(scheduler_obj) else scheduler_obj
+    if optimizer is None:
+        optimizer = sched.optimizer if sched is not None else torch.optim.Adam(
+            model.parameters(), lr=1e-4, betas=(0.9, 0.98), eps=1e-9)
 
     for epoch in range(1, cfg['epochs'] + 1):
         tl = train_epoch(model, train_loader, criterion, optimizer, sched,
@@ -84,7 +85,7 @@ def exp_noam_vs_fixed(data, device):
             for pg in optimizer.param_groups: pg['lr'] = 1e-4
             sched = None
         run_training(model, train_loader, val_loader, src_vocab, tgt_vocab,
-                     BASE_CFG, lambda opt: sched, criterion, device)
+                     BASE_CFG, sched, criterion, device)
         wandb.finish()
 
 
@@ -147,7 +148,7 @@ def exp_scaling_factor(data, device):
         sched.step = logged_step
 
         run_training(model, train_loader, val_loader, src_vocab, tgt_vocab,
-                     {**BASE_CFG, 'epochs': 10}, lambda opt: sched, criterion, device)
+                     {**BASE_CFG, 'epochs': 10}, sched, criterion, device)
         wandb.finish()
 
     model_module.scaled_dot_product_attention = original_sdpa   # restore
@@ -200,7 +201,7 @@ def exp_attention_rollout(model_path, data, device):
         plt.colorbar(im, ax=ax, fraction=0.046, pad=0.04)
 
     plt.tight_layout()
-    fig_path = '/tmp/attention_heads.png'
+    import tempfile; fig_path = tempfile.mktemp(suffix='.png')
     plt.savefig(fig_path, dpi=100)
     wandb.log({'attention/head_heatmaps': wandb.Image(fig_path)})
     plt.close()
@@ -223,7 +224,7 @@ def exp_pos_encoding(data, device):
         optimizer = torch.optim.Adam(model.parameters(), lr=0, betas=(0.9, 0.98), eps=1e-9)
         sched = NoamScheduler(optimizer, BASE_CFG['d_model'], BASE_CFG['warmup_steps'])
         run_training(model, train_loader, val_loader, src_vocab, tgt_vocab,
-                     BASE_CFG, lambda opt: sched, criterion, device)
+                     BASE_CFG, sched, criterion, device)
         wandb.finish()
 
 
@@ -265,7 +266,7 @@ def exp_label_smoothing(data, device):
             return {'train/pred_confidence': float(np.mean(conf_vals))}
 
         run_training(model, train_loader, val_loader, src_vocab, tgt_vocab,
-                     BASE_CFG, lambda opt: sched, criterion, device,
+                     BASE_CFG, sched, criterion, device,
                      extra_hooks=conf_hook)
         wandb.finish()
 

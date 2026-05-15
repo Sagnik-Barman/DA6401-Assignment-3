@@ -1,0 +1,16 @@
+  epoch   1 | train=5.3768 | val=4.0911
+  epoch   2 | train=3.7833 | val=3.4129
+  epoch   3 | train=3.3142 | val=3.1116
+  epoch   4 | train=3.0527 | val=2.9879
+That's 100 lines that end in a tokenized period ('.')
+It looks like you forgot to detokenize your test data, which may hurt your score.
+If you insist your data is detokenized, or don't care, you can suppress this message with the `force` parameter.
+  epoch   5 | train=2.8885 | val=2.9188
+  epoch   6 | train=2.7684 | val=2.8399
+  epoch   7 | train=2.6717 | val=2.7932
+  epoch   8 | train=2.5934 | val=2.7651
+  epoch   9 | train=2.5227 | val=2.7430
+That's 100 lines that end in a tokenized period ('.')
+It looks like you forgot to detokenize your test data, which may hurt your score.
+If you insist your data is detokenized, or don't care, you can suppress this message with the `force` parameter.
+  epoch  10 | train=2.4630 | val=2.7240
