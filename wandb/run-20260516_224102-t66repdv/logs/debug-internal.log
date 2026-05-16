@@ -1,0 +1,12 @@
+{"time":"2026-05-16T22:41:05.2854617+05:30","level":"INFO","msg":"stream: starting","core version":"0.25.0"}
+{"time":"2026-05-16T22:41:06.4272697+05:30","level":"INFO","msg":"stream: created new stream","id":"t66repdv"}
+{"time":"2026-05-16T22:41:06.4272697+05:30","level":"INFO","msg":"handler: started","stream_id":"t66repdv"}
+{"time":"2026-05-16T22:41:06.4303947+05:30","level":"INFO","msg":"stream: started","id":"t66repdv"}
+{"time":"2026-05-16T22:41:06.4303947+05:30","level":"INFO","msg":"writer: started","stream_id":"t66repdv"}
+{"time":"2026-05-16T22:41:06.4303947+05:30","level":"INFO","msg":"sender: started","stream_id":"t66repdv"}
+{"time":"2026-05-16T22:48:41.4094684+05:30","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2026-05-16T22:48:41.9039324+05:30","level":"INFO","msg":"handler: operation stats","stats":{}}
+{"time":"2026-05-16T22:48:41.9071036+05:30","level":"INFO","msg":"stream: closing","id":"t66repdv"}
+{"time":"2026-05-16T22:48:41.9071036+05:30","level":"INFO","msg":"handler: closed","stream_id":"t66repdv"}
+{"time":"2026-05-16T22:48:41.9071036+05:30","level":"INFO","msg":"sender: closed","stream_id":"t66repdv"}
+{"time":"2026-05-16T22:48:41.9071036+05:30","level":"INFO","msg":"stream: closed","id":"t66repdv"}

@@ -1,0 +1,75 @@
+Loading Multi30k dataset …
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Src vocab size: 7853  |  Tgt vocab size: 5893
+Parameters: 8,978,949
+Epoch   1 | train_loss=5.3918 | val_loss=4.0926
+  ✓ Checkpoint saved (val_loss=4.0926)
+Epoch   2 | train_loss=3.7767 | val_loss=3.4324
+  ✓ Checkpoint saved (val_loss=3.4324)
+Epoch   3 | train_loss=3.3290 | val_loss=3.1519
+  ✓ Checkpoint saved (val_loss=3.1519)
+Epoch   4 | train_loss=3.0751 | val_loss=3.0280
+  ✓ Checkpoint saved (val_loss=3.0280)
+That's 100 lines that end in a tokenized period ('.')
+It looks like you forgot to detokenize your test data, which may hurt your score.
+If you insist your data is detokenized, or don't care, you can suppress this message with the `force` parameter.
+Epoch   5 | train_loss=2.9140 | val_loss=2.9175 | val_bleu=29.66
+  ✓ Checkpoint saved (val_loss=2.9175)
+Epoch   6 | train_loss=2.7952 | val_loss=2.8549
+  ✓ Checkpoint saved (val_loss=2.8549)
+Epoch   7 | train_loss=2.6981 | val_loss=2.8164
+  ✓ Checkpoint saved (val_loss=2.8164)
+Epoch   8 | train_loss=2.6207 | val_loss=2.7725
+  ✓ Checkpoint saved (val_loss=2.7725)
+Epoch   9 | train_loss=2.5496 | val_loss=2.7568
+  ✓ Checkpoint saved (val_loss=2.7568)
+That's 100 lines that end in a tokenized period ('.')
+It looks like you forgot to detokenize your test data, which may hurt your score.
+If you insist your data is detokenized, or don't care, you can suppress this message with the `force` parameter.
+Epoch  10 | train_loss=2.4949 | val_loss=2.7482 | val_bleu=35.11
+  ✓ Checkpoint saved (val_loss=2.7482)
+Epoch  11 | train_loss=2.4410 | val_loss=2.7283
+  ✓ Checkpoint saved (val_loss=2.7283)
+Epoch  12 | train_loss=2.3948 | val_loss=2.7191
+  ✓ Checkpoint saved (val_loss=2.7191)
+Epoch  13 | train_loss=2.3544 | val_loss=2.7091
+  ✓ Checkpoint saved (val_loss=2.7091)
+Epoch  14 | train_loss=2.3156 | val_loss=2.7081
+  ✓ Checkpoint saved (val_loss=2.7081)
+That's 100 lines that end in a tokenized period ('.')
+It looks like you forgot to detokenize your test data, which may hurt your score.
+If you insist your data is detokenized, or don't care, you can suppress this message with the `force` parameter.
+Epoch  15 | train_loss=2.2789 | val_loss=2.7000 | val_bleu=37.04
+  ✓ Checkpoint saved (val_loss=2.7000)
+Epoch  16 | train_loss=2.2474 | val_loss=2.6941
+  ✓ Checkpoint saved (val_loss=2.6941)
+Epoch  17 | train_loss=2.2161 | val_loss=2.6918
+  ✓ Checkpoint saved (val_loss=2.6918)
+Epoch  18 | train_loss=2.1883 | val_loss=2.6892
+  ✓ Checkpoint saved (val_loss=2.6892)
+Epoch  19 | train_loss=2.1603 | val_loss=2.6967
+That's 100 lines that end in a tokenized period ('.')
+It looks like you forgot to detokenize your test data, which may hurt your score.
+If you insist your data is detokenized, or don't care, you can suppress this message with the `force` parameter.
+Epoch  20 | train_loss=2.1365 | val_loss=2.7075 | val_bleu=37.96
+Epoch  21 | train_loss=2.1122 | val_loss=2.7072
+Epoch  22 | train_loss=2.0916 | val_loss=2.7040
+Epoch  23 | train_loss=2.0681 | val_loss=2.7169
+Epoch  24 | train_loss=2.0477 | val_loss=2.7127
+That's 100 lines that end in a tokenized period ('.')
+It looks like you forgot to detokenize your test data, which may hurt your score.
+If you insist your data is detokenized, or don't care, you can suppress this message with the `force` parameter.
+Epoch  25 | train_loss=2.0296 | val_loss=2.7195 | val_bleu=37.73
+Epoch  26 | train_loss=2.0137 | val_loss=2.7234
+Epoch  27 | train_loss=1.9961 | val_loss=2.7251
+Epoch  28 | train_loss=1.9793 | val_loss=2.7341
+Epoch  29 | train_loss=1.9643 | val_loss=2.7484
+That's 100 lines that end in a tokenized period ('.')
+It looks like you forgot to detokenize your test data, which may hurt your score.
+If you insist your data is detokenized, or don't care, you can suppress this message with the `force` parameter.
+Epoch  30 | train_loss=1.9501 | val_loss=2.7492 | val_bleu=38.27
+That's 100 lines that end in a tokenized period ('.')
+It looks like you forgot to detokenize your test data, which may hurt your score.
+If you insist your data is detokenized, or don't care, you can suppress this message with the `force` parameter.
+
+Test BLEU (best ckpt): 37.76

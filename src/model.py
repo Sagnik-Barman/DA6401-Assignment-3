@@ -296,7 +296,7 @@ class Transformer(nn.Module):
                 if i < len(self._tgt_idx2token) and i not in specials]
 
     def state_dict(self, **kwargs):
-        """Override to include vocab dicts in checkpoint."""
+        """Override to include vocab dicts and model config in checkpoint."""
         sd = super().state_dict(**kwargs)
         if getattr(self, "_vocab_loaded", False):
             sd["_src_token2idx"] = self._src_token2idx
@@ -312,16 +312,52 @@ class Transformer(nn.Module):
             sd["_tgt_eos"] = self._tgt_eos
             sd["_tgt_unk"] = self._tgt_unk
             sd["_vocab_loaded"] = True
+            # Store vocab sizes so grader can rebuild model correctly
+            sd["_src_vocab_size"] = len(self._src_idx2token)
+            sd["_tgt_vocab_size"] = len(self._tgt_idx2token)
+            sd["_max_len"] = self.encoder.pos_enc.pe.shape[1]
         return sd
 
     def load_state_dict(self, state_dict, strict=True):
-        """Override to restore vocab dicts from checkpoint."""
+        """Override to restore vocab dicts and resize model if needed."""
         vocab_keys = ["_src_token2idx","_src_idx2token","_src_pad","_src_bos",
                       "_src_eos","_src_unk","_tgt_token2idx","_tgt_idx2token",
-                      "_tgt_pad","_tgt_bos","_tgt_eos","_tgt_unk","_vocab_loaded"]
+                      "_tgt_pad","_tgt_bos","_tgt_eos","_tgt_unk","_vocab_loaded",
+                      "_src_vocab_size","_tgt_vocab_size","_max_len"]
+        # Make a copy so we do not mutate the original
+        state_dict = dict(state_dict)
         for k in vocab_keys:
             if k in state_dict:
                 setattr(self, k, state_dict.pop(k))
+
+        # If vocab sizes differ from defaults, rebuild embedding layers
+        src_vocab_size = getattr(self, "_src_vocab_size", None)
+        tgt_vocab_size = getattr(self, "_tgt_vocab_size", None)
+        if src_vocab_size is not None and tgt_vocab_size is not None:
+            d_model = self.encoder.embedding.embedding_dim
+            max_len = self.encoder.pos_enc.pe.shape[1]
+            dropout = self.encoder.layers[0].dropout.p
+            num_heads = self.encoder.layers[0].self_attn.num_heads
+            d_ff = self.encoder.layers[0].ffn.linear1.out_features
+            num_layers = len(self.encoder.layers)
+            pos_enc_type = "learned" if hasattr(self.encoder.pos_enc, "embedding") else "sinusoidal"
+            # Rebuild embeddings with correct sizes
+            self.encoder.embedding = nn.Embedding(src_vocab_size, d_model)
+            self.decoder.embedding = nn.Embedding(tgt_vocab_size, d_model)
+            self.fc_out = nn.Linear(d_model, tgt_vocab_size, bias=True)
+            # Always rebuild PE with checkpoint max_len (from state_dict pe shape)
+            ckpt_max_len = getattr(self, "_max_len", state_dict.get("encoder.pos_enc.pe", self.encoder.pos_enc.pe).shape[1] if isinstance(state_dict.get("encoder.pos_enc.pe"), __import__("torch").Tensor) else 150)
+            if pos_enc_type == "sinusoidal":
+                self.encoder.pos_enc = PositionalEncoding(d_model, ckpt_max_len, dropout)
+                self.decoder.pos_enc = PositionalEncoding(d_model, ckpt_max_len, dropout)
+            # Move to same device
+            device = next(p.device for p in [self.encoder.norm.weight])
+            self.encoder.embedding = self.encoder.embedding.to(device)
+            self.decoder.embedding = self.decoder.embedding.to(device)
+            self.fc_out = self.fc_out.to(device)
+            self.encoder.pos_enc = self.encoder.pos_enc.to(device)
+            self.decoder.pos_enc = self.decoder.pos_enc.to(device)
+
         super().load_state_dict(state_dict, strict=strict)
 
     def infer(self, src, src_mask=None, max_len=100, bos_idx=None, eos_idx=None):
