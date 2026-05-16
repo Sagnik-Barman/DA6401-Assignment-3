@@ -225,9 +225,10 @@ def _build_vocab_from_multi30k():
     except Exception:
         return None, None, None, None, None
 
-    src_vocab = {"<unk>": 0, "<pad>": 1, "<bos>": 2, "<eos>": 3}
-    tgt_vocab = {"<unk>": 0, "<pad>": 1, "<bos>": 2, "<eos>": 3}
-    tgt_itos  = {0: "<unk>", 1: "<pad>", 2: "<bos>", 3: "<eos>"}
+    # Order must match src/data.py Vocabulary class: pad=0, unk=1, bos=2, eos=3
+    src_vocab = {"<pad>": 0, "<unk>": 1, "<bos>": 2, "<eos>": 3}
+    tgt_vocab = {"<pad>": 0, "<unk>": 1, "<bos>": 2, "<eos>": 3}
+    tgt_itos  = {0: "<pad>", 1: "<unk>", 2: "<bos>", 3: "<eos>"}
 
     de_counter, en_counter = Counter(), Counter()
     for ex in ds:
@@ -302,9 +303,9 @@ class Transformer(nn.Module):
         self.eval()
         device = next(self.parameters()).device
 
-        bos_idx = bos_idx or self._src_vocab.get("<bos>", 2) if self._vocab_ready else 2
-        eos_idx = eos_idx or self._src_vocab.get("<eos>", 3) if self._vocab_ready else 3
-        pad_idx = self._src_vocab.get("<pad>", 1) if self._vocab_ready else 1
+        bos_idx = self._src_vocab.get("<bos>", 2) if self._vocab_ready else 2
+        eos_idx = self._src_vocab.get("<eos>", 3) if self._vocab_ready else 3
+        pad_idx = self._src_vocab.get("<pad>", 0) if self._vocab_ready else 0
         tgt_bos = self._tgt_vocab.get("<bos>", 2) if self._vocab_ready else 2
         tgt_eos = self._tgt_vocab.get("<eos>", 3) if self._vocab_ready else 3
 
@@ -349,9 +350,10 @@ class Transformer(nn.Module):
             if tgt_eos in seq:
                 seq = seq[:seq.index(tgt_eos)]
             if self._vocab_ready:
+                specials = {"<pad>", "<unk>", "<bos>", "<eos>"}
                 words = [self._tgt_itos[idx] for idx in seq
                          if idx in self._tgt_itos and
-                         self._tgt_itos[idx] not in ("<pad>","<bos>","<eos>","<unk>")]
+                         self._tgt_itos[idx] not in specials]
             else:
                 words = [str(t) for t in seq]
             results.append(" ".join(words))
