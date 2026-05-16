@@ -1,0 +1,113 @@
+_wandb:
+    value:
+        cli_version: 0.25.0
+        e:
+            wq33ptrfo2n29q2qpwy0r3nef6ofllx2:
+                args:
+                    - --config
+                    - configs/base.yaml
+                    - --wandb_project
+                    - da6401-assignment3
+                    - --run_name
+                    - base_run_v2
+                    - --warmup_steps
+                    - "400"
+                    - --epochs
+                    - "30"
+                codePath: train.py
+                codePathLocal: train.py
+                cpu_count: 10
+                cpu_count_logical: 20
+                cudaVersion: "12.7"
+                disk:
+                    /:
+                        total: "391247818752"
+                        used: "292559020032"
+                email: ma25m024@smail.iitm.ac.in
+                executable: C:\Users\SAGNIK BARMAN\AppData\Local\Programs\Python\Python313\python.exe
+                git:
+                    commit: 71cf12888eaa5ed15fd05b38eedfb3e38c8359d8
+                    remote: https://github.com/Sagnik-Barman/DA6401-Assignment-3.git
+                gpu: NVIDIA GeForce RTX 4050 Laptop GPU
+                gpu_count: 1
+                gpu_nvidia:
+                    - architecture: Ada
+                      cudaCores: 2560
+                      memoryTotal: "6439305216"
+                      name: NVIDIA GeForce RTX 4050 Laptop GPU
+                      uuid: GPU-67b527b3-4672-3c72-dfef-7aedde5b2cb5
+                host: DESKTOP-HKBG4RS
+                memory:
+                    total: "24823836672"
+                os: Windows-11-10.0.26200-SP0
+                program: D:\Frameworks\DA6401-Assignment-3\train.py
+                python: CPython 3.13.5
+                root: D:\Frameworks\DA6401-Assignment-3
+                startedAt: "2026-05-16T00:21:55.922676Z"
+                writerId: wq33ptrfo2n29q2qpwy0r3nef6ofllx2
+        m: []
+        python_version: 3.13.5
+        t:
+            "1":
+                - 1
+                - 33
+                - 49
+                - 51
+            "2":
+                - 1
+                - 33
+                - 49
+                - 51
+            "3":
+                - 13
+                - 16
+            "4": 3.13.5
+            "5": 0.25.0
+            "8":
+                - 3
+            "12": 0.25.0
+            "13": windows-amd64
+batch_size:
+    value: 128
+clip:
+    value: 1
+d_ff:
+    value: 512
+d_model:
+    value: 256
+dropout:
+    value: 0.1
+epochs:
+    value: 30
+fixed_lr:
+    value: 0.0001
+label_smoothing:
+    value: 0.1
+log_interval:
+    value: 50
+max_len:
+    value: 150
+min_freq:
+    value: 2
+noam_factor:
+    value: 1
+num_heads:
+    value: 8
+num_layers:
+    value: 3
+num_workers:
+    value: 2
+pos_encoding:
+    value: sinusoidal
+run_name:
+    value: base_run_v2
+save_path:
+    value: checkpoints/best_model.pt
+use_noam:
+    value: true
+wandb_entity:
+    value: null
+wandb_project:
+    value: da6401-assignment3
+warmup_steps:
+    value: 400

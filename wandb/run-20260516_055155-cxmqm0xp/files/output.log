@@ -1,0 +1,118 @@
+Loading Multi30k dataset …
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Traceback (most recent call last):
+  File "D:\Frameworks\DA6401-Assignment-3\train.py", line 184, in <module>
+    main()
+    ~~~~^^
+  File "D:\Frameworks\DA6401-Assignment-3\train.py", line 96, in main
+    train_loader, val_loader, test_loader, src_vocab, tgt_vocab = get_dataloaders(
+                                                                  ~~~~~~~~~~~~~~~^
+        batch_size  = cfg['batch_size'],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+        num_workers = cfg['num_workers'],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\Frameworks\DA6401-Assignment-3\src\data.py", line 127, in get_dataloaders
+    raw = load_dataset('bentrevett/multi30k')
+  File "C:\Users\SAGNIK BARMAN\AppData\Local\Programs\Python\Python313\Lib\site-packages\datasets\load.py", line 1688, in load_dataset
+    builder_instance = load_dataset_builder(
+        path=path,
+    ...<10 lines>...
+        **config_kwargs,
+    )
+  File "C:\Users\SAGNIK BARMAN\AppData\Local\Programs\Python\Python313\Lib\site-packages\datasets\load.py", line 1315, in load_dataset_builder
+    dataset_module = dataset_module_factory(
+        path,
+    ...<5 lines>...
+        cache_dir=cache_dir,
+    )
+  File "C:\Users\SAGNIK BARMAN\AppData\Local\Programs\Python\Python313\Lib\site-packages\datasets\load.py", line 1182, in dataset_module_factory
+    ).get_module()
+      ~~~~~~~~~~^^
+  File "C:\Users\SAGNIK BARMAN\AppData\Local\Programs\Python\Python313\Lib\site-packages\datasets\load.py", line 638, in get_module
+    patterns = get_data_patterns(base_path, download_config=self.download_config)
+  File "C:\Users\SAGNIK BARMAN\AppData\Local\Programs\Python\Python313\Lib\site-packages\datasets\data_files.py", line 493, in get_data_patterns
+    return _get_data_files_patterns(resolver)
+  File "C:\Users\SAGNIK BARMAN\AppData\Local\Programs\Python\Python313\Lib\site-packages\datasets\data_files.py", line 268, in _get_data_files_patterns
+    data_files = pattern_resolver(pattern)
+  File "C:\Users\SAGNIK BARMAN\AppData\Local\Programs\Python\Python313\Lib\site-packages\datasets\data_files.py", line 372, in resolve_pattern
+    for filepath, info in fs.glob(fs_pattern, detail=True, **glob_kwargs).items():
+                          ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SAGNIK BARMAN\AppData\Local\Programs\Python\Python313\Lib\site-packages\huggingface_hub\hf_file_system.py", line 751, in glob
+    return super().glob(path, maxdepth=maxdepth, **kwargs)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SAGNIK BARMAN\AppData\Local\Programs\Python\Python313\Lib\site-packages\fsspec\spec.py", line 642, in glob
+    allpaths = self.find(root, maxdepth=depth, withdirs=True, detail=True, **kwargs)
+  File "C:\Users\SAGNIK BARMAN\AppData\Local\Programs\Python\Python313\Lib\site-packages\huggingface_hub\hf_file_system.py", line 790, in find
+    out = self._ls_tree(path, recursive=True, refresh=refresh, maxdepth=maxdepth, **kwargs)
+  File "C:\Users\SAGNIK BARMAN\AppData\Local\Programs\Python\Python313\Lib\site-packages\huggingface_hub\hf_file_system.py", line 637, in _ls_tree
+    for path_info in tree:
+                     ^^^^
+  File "C:\Users\SAGNIK BARMAN\AppData\Local\Programs\Python\Python313\Lib\site-packages\huggingface_hub\hf_api.py", line 3849, in list_repo_tree
+    for path_info in paginate(path=tree_url, headers=headers, params={"recursive": recursive, "expand": expand}):
+                     ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SAGNIK BARMAN\AppData\Local\Programs\Python\Python313\Lib\site-packages\huggingface_hub\utils\_pagination.py", line 35, in paginate
+    r = session.get(path, params=params, headers=headers)
+  File "C:\Users\SAGNIK BARMAN\AppData\Local\Programs\Python\Python313\Lib\site-packages\httpx\_client.py", line 1053, in get
+    return self.request(
+           ~~~~~~~~~~~~^
+        "GET",
+        ^^^^^^
+    ...<7 lines>...
+        extensions=extensions,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\SAGNIK BARMAN\AppData\Local\Programs\Python\Python313\Lib\site-packages\httpx\_client.py", line 825, in request
+    return self.send(request, auth=auth, follow_redirects=follow_redirects)
+           ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SAGNIK BARMAN\AppData\Local\Programs\Python\Python313\Lib\site-packages\httpx\_client.py", line 914, in send
+    response = self._send_handling_auth(
+        request,
+    ...<2 lines>...
+        history=[],
+    )
+  File "C:\Users\SAGNIK BARMAN\AppData\Local\Programs\Python\Python313\Lib\site-packages\httpx\_client.py", line 942, in _send_handling_auth
+    response = self._send_handling_redirects(
+        request,
+        follow_redirects=follow_redirects,
+        history=history,
+    )
+  File "C:\Users\SAGNIK BARMAN\AppData\Local\Programs\Python\Python313\Lib\site-packages\httpx\_client.py", line 979, in _send_handling_redirects
+    response = self._send_single_request(request)
+  File "C:\Users\SAGNIK BARMAN\AppData\Local\Programs\Python\Python313\Lib\site-packages\httpx\_client.py", line 1014, in _send_single_request
+    response = transport.handle_request(request)
+  File "C:\Users\SAGNIK BARMAN\AppData\Local\Programs\Python\Python313\Lib\site-packages\httpx\_transports\default.py", line 250, in handle_request
+    resp = self._pool.handle_request(req)
+  File "C:\Users\SAGNIK BARMAN\AppData\Local\Programs\Python\Python313\Lib\site-packages\httpcore\_sync\connection_pool.py", line 256, in handle_request
+    raise exc from None
+  File "C:\Users\SAGNIK BARMAN\AppData\Local\Programs\Python\Python313\Lib\site-packages\httpcore\_sync\connection_pool.py", line 236, in handle_request
+    response = connection.handle_request(
+        pool_request.request
+    )
+  File "C:\Users\SAGNIK BARMAN\AppData\Local\Programs\Python\Python313\Lib\site-packages\httpcore\_sync\connection.py", line 103, in handle_request
+    return self._connection.handle_request(request)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\SAGNIK BARMAN\AppData\Local\Programs\Python\Python313\Lib\site-packages\httpcore\_sync\http11.py", line 136, in handle_request
+    raise exc
+  File "C:\Users\SAGNIK BARMAN\AppData\Local\Programs\Python\Python313\Lib\site-packages\httpcore\_sync\http11.py", line 106, in handle_request
+    ) = self._receive_response_headers(**kwargs)
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\SAGNIK BARMAN\AppData\Local\Programs\Python\Python313\Lib\site-packages\httpcore\_sync\http11.py", line 177, in _receive_response_headers
+    event = self._receive_event(timeout=timeout)
+  File "C:\Users\SAGNIK BARMAN\AppData\Local\Programs\Python\Python313\Lib\site-packages\httpcore\_sync\http11.py", line 217, in _receive_event
+    data = self._network_stream.read(
+        self.READ_NUM_BYTES, timeout=timeout
+    )
+  File "C:\Users\SAGNIK BARMAN\AppData\Local\Programs\Python\Python313\Lib\site-packages\httpcore\_backends\sync.py", line 128, in read
+    return self._sock.recv(max_bytes)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "C:\Users\SAGNIK BARMAN\AppData\Local\Programs\Python\Python313\Lib\ssl.py", line 1285, in recv
+    return self.read(buflen)
+           ~~~~~~~~~^^^^^^^^
+  File "C:\Users\SAGNIK BARMAN\AppData\Local\Programs\Python\Python313\Lib\ssl.py", line 1140, in read
+    return self._sslobj.read(len)
+           ~~~~~~~~~~~~~~~~~^^^^^
+KeyboardInterrupt

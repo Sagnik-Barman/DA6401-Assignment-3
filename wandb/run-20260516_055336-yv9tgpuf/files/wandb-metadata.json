@@ -1,0 +1,52 @@
+{
+  "os":  "Windows-11-10.0.26200-SP0",
+  "python":  "CPython 3.13.5",
+  "startedAt":  "2026-05-16T00:23:36.872479Z",
+  "args":  [
+    "--config",
+    "configs/base.yaml",
+    "--wandb_project",
+    "da6401-assignment3",
+    "--run_name",
+    "base_run_v2",
+    "--warmup_steps",
+    "400",
+    "--epochs",
+    "30"
+  ],
+  "program":  "D:\\Frameworks\\DA6401-Assignment-3\\train.py",
+  "codePath":  "train.py",
+  "codePathLocal":  "train.py",
+  "git":  {
+    "remote":  "https://github.com/Sagnik-Barman/DA6401-Assignment-3.git",
+    "commit":  "71cf12888eaa5ed15fd05b38eedfb3e38c8359d8"
+  },
+  "email":  "ma25m024@smail.iitm.ac.in",
+  "root":  "D:\\Frameworks\\DA6401-Assignment-3",
+  "host":  "DESKTOP-HKBG4RS",
+  "executable":  "C:\\Users\\SAGNIK BARMAN\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+  "cpu_count":  10,
+  "cpu_count_logical":  20,
+  "gpu":  "NVIDIA GeForce RTX 4050 Laptop GPU",
+  "gpu_count":  1,
+  "disk":  {
+    "/":  {
+      "total":  "391247818752",
+      "used":  "292559069184"
+    }
+  },
+  "memory":  {
+    "total":  "24823836672"
+  },
+  "gpu_nvidia":  [
+    {
+      "name":  "NVIDIA GeForce RTX 4050 Laptop GPU",
+      "memoryTotal":  "6439305216",
+      "cudaCores":  2560,
+      "architecture":  "Ada",
+      "uuid":  "GPU-67b527b3-4672-3c72-dfef-7aedde5b2cb5"
+    }
+  ],
+  "cudaVersion":  "12.7",
+  "writerId":  "lg6ihwghs5d1sj42foiwwe0n5il75j7u"
+}

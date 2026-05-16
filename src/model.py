@@ -271,6 +271,23 @@ class Transformer(nn.Module):
         self.src_vocab = src_vocab
         self.tgt_vocab = tgt_vocab
 
+    def state_dict(self, **kwargs):
+        """Override to include vocabs in checkpoint."""
+        sd = super().state_dict(**kwargs)
+        sd["_src_vocab"] = self.src_vocab
+        sd["_tgt_vocab"] = self.tgt_vocab
+        return sd
+
+    def load_state_dict(self, state_dict, strict=True):
+        """Override to restore vocabs from checkpoint."""
+        src_vocab = state_dict.pop("_src_vocab", None)
+        tgt_vocab = state_dict.pop("_tgt_vocab", None)
+        super().load_state_dict(state_dict, strict=strict)
+        if src_vocab is not None:
+            self.src_vocab = src_vocab
+        if tgt_vocab is not None:
+            self.tgt_vocab = tgt_vocab
+
     def infer(self, src, src_mask=None, max_len=100, bos_idx=None, eos_idx=None):
         """
         Greedy decoding. Accepts string, list of token ids, or (B, seq) tensor.
