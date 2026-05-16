@@ -267,26 +267,62 @@ class Transformer(nn.Module):
         return self.fc_out(dec_out)
 
     def set_vocabs(self, src_vocab, tgt_vocab):
-        """Store vocabs on model for use during inference."""
+        """Store vocabs as plain dicts (JSON-safe, works with weights_only=True)."""
+        # Store as plain dicts so torch.load(weights_only=True) works
+        self._src_token2idx = src_vocab.token2idx
+        self._src_idx2token = src_vocab.idx2token
+        self._src_pad = src_vocab.pad_idx
+        self._src_bos = src_vocab.bos_idx
+        self._src_eos = src_vocab.eos_idx
+        self._src_unk = src_vocab.unk_idx
+        self._tgt_token2idx = tgt_vocab.token2idx
+        self._tgt_idx2token = tgt_vocab.idx2token
+        self._tgt_pad = tgt_vocab.pad_idx
+        self._tgt_bos = tgt_vocab.bos_idx
+        self._tgt_eos = tgt_vocab.eos_idx
+        self._tgt_unk = tgt_vocab.unk_idx
+        self._vocab_loaded = True
+        # Keep original objects for compatibility
         self.src_vocab = src_vocab
         self.tgt_vocab = tgt_vocab
 
+    def _encode_src(self, tokens):
+        unk = self._src_unk
+        return [self._src_token2idx.get(t, unk) for t in tokens]
+
+    def _decode_tgt(self, indices):
+        specials = {self._tgt_pad, self._tgt_bos, self._tgt_eos, self._tgt_unk}
+        return [self._tgt_idx2token[i] for i in indices
+                if i < len(self._tgt_idx2token) and i not in specials]
+
     def state_dict(self, **kwargs):
-        """Override to include vocabs in checkpoint."""
+        """Override to include vocab dicts in checkpoint."""
         sd = super().state_dict(**kwargs)
-        sd["_src_vocab"] = self.src_vocab
-        sd["_tgt_vocab"] = self.tgt_vocab
+        if getattr(self, "_vocab_loaded", False):
+            sd["_src_token2idx"] = self._src_token2idx
+            sd["_src_idx2token"] = self._src_idx2token
+            sd["_src_pad"] = self._src_pad
+            sd["_src_bos"] = self._src_bos
+            sd["_src_eos"] = self._src_eos
+            sd["_src_unk"] = self._src_unk
+            sd["_tgt_token2idx"] = self._tgt_token2idx
+            sd["_tgt_idx2token"] = self._tgt_idx2token
+            sd["_tgt_pad"] = self._tgt_pad
+            sd["_tgt_bos"] = self._tgt_bos
+            sd["_tgt_eos"] = self._tgt_eos
+            sd["_tgt_unk"] = self._tgt_unk
+            sd["_vocab_loaded"] = True
         return sd
 
     def load_state_dict(self, state_dict, strict=True):
-        """Override to restore vocabs from checkpoint."""
-        src_vocab = state_dict.pop("_src_vocab", None)
-        tgt_vocab = state_dict.pop("_tgt_vocab", None)
+        """Override to restore vocab dicts from checkpoint."""
+        vocab_keys = ["_src_token2idx","_src_idx2token","_src_pad","_src_bos",
+                      "_src_eos","_src_unk","_tgt_token2idx","_tgt_idx2token",
+                      "_tgt_pad","_tgt_bos","_tgt_eos","_tgt_unk","_vocab_loaded"]
+        for k in vocab_keys:
+            if k in state_dict:
+                setattr(self, k, state_dict.pop(k))
         super().load_state_dict(state_dict, strict=strict)
-        if src_vocab is not None:
-            self.src_vocab = src_vocab
-        if tgt_vocab is not None:
-            self.tgt_vocab = tgt_vocab
 
     def infer(self, src, src_mask=None, max_len=100, bos_idx=None, eos_idx=None):
         """
@@ -296,28 +332,26 @@ class Transformer(nn.Module):
         self.eval()
         device = next(self.parameters()).device
 
-        # Resolve bos/eos from stored vocab if available
-        src_vocab = getattr(self, "src_vocab", None)
-        tgt_vocab = getattr(self, "tgt_vocab", None)
+        # Resolve bos/eos from stored vocab dicts
+        vocab_loaded = getattr(self, "_vocab_loaded", False)
         if bos_idx is None:
-            bos_idx = tgt_vocab.bos_idx if tgt_vocab else 1
+            bos_idx = getattr(self, "_tgt_bos", 1)
         if eos_idx is None:
-            eos_idx = tgt_vocab.eos_idx if tgt_vocab else 2
-        pad_idx = src_vocab.pad_idx if src_vocab else 0
+            eos_idx = getattr(self, "_tgt_eos", 2)
+        pad_idx = getattr(self, "_src_pad", 0)
 
         # Handle string input
         if isinstance(src, str):
-            if src_vocab is not None:
+            if vocab_loaded:
                 import spacy
                 try:
                     nlp = spacy.load("de_core_news_sm")
                 except OSError:
                     nlp = spacy.blank("de")
                 tokens = [tok.text.lower() for tok in nlp.tokenizer(src.strip())]
-                ids = [src_vocab.bos_idx] + src_vocab.encode(tokens) + [src_vocab.eos_idx]
+                ids = [self._src_bos] + self._encode_src(tokens) + [self._src_eos]
                 src = torch.tensor(ids, dtype=torch.long).unsqueeze(0)
             else:
-                # No vocab available - return empty string
                 return ""
 
         # Handle list input
@@ -354,8 +388,10 @@ class Transformer(nn.Module):
             seq = ys[i, 1:].tolist()
             if eos_idx in seq:
                 seq = seq[:seq.index(eos_idx)]
-            if tgt_vocab is not None:
-                words = tgt_vocab.decode(seq)
+            if getattr(self, "_vocab_loaded", False):
+                words = self._decode_tgt(seq)
+            elif getattr(self, "tgt_vocab", None) is not None:
+                words = self.tgt_vocab.decode(seq)
             else:
                 words = [str(t) for t in seq]
             results.append(" ".join(words))
