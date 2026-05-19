@@ -161,12 +161,24 @@ def main():
         if val_loss < best_val_loss:
             best_val_loss = val_loss
             model.set_vocabs(src_vocab, tgt_vocab)
+            # Save vocab as plain dicts so they survive any loading mode
+            src_t2i = dict(src_vocab.token2idx)
+            src_i2t = list(src_vocab.idx2token)
+            tgt_t2i = dict(tgt_vocab.token2idx)
+            tgt_i2t = list(tgt_vocab.idx2token)
+            state = model.state_dict()
+            # Inject vocab into state dict directly so load_state_dict restores them
+            state['_src_t2i'] = src_t2i
+            state['_src_i2t'] = src_i2t
+            state['_tgt_t2i'] = tgt_t2i
+            state['_tgt_i2t'] = tgt_i2t
             torch.save({
-                'epoch':       epoch,
-                'model_state': model.state_dict(),
-                'cfg':         cfg,
-                'src_vocab':   src_vocab,
-                'tgt_vocab':   tgt_vocab,
+                'epoch':            epoch,
+                'model_state':      state,
+                'model_state_dict': state,
+                'cfg':              cfg,
+                'src_vocab':        src_vocab,
+                'tgt_vocab':        tgt_vocab,
             }, cfg['save_path'])
             print(f"  ✓ Checkpoint saved (val_loss={val_loss:.4f})")
 

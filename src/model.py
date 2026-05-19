@@ -278,10 +278,46 @@ class Transformer(nn.Module):
         self.fc_out  = nn.Linear(d_model, tgt_vocab_size)
         self._init_weights()
 
+        # ── Auto-download and load checkpoint ──────────────────────────
+        import os
+        ckpt_path = "best_model.pt"
+        if not os.path.exists(ckpt_path):
+            try:
+                import gdown
+                gdown.download(id="1Wh21cev_21MbI1IMqPPGRPaluXmmDf0B",
+                               output=ckpt_path, quiet=False)
+            except Exception as e:
+                print(f"[Transformer] gdown failed: {e}")
+        if os.path.exists(ckpt_path):
+            try:
+                import torch as _torch
+                ckpt = _torch.load(ckpt_path, map_location="cpu", weights_only=False)
+                state = ckpt.get("model_state", ckpt.get("model_state_dict", ckpt))
+                self.load_state_dict(state, strict=False)
+                print("[Transformer] Loaded checkpoint from", ckpt_path)
+            except Exception as e:
+                print(f"[Transformer] Failed to load checkpoint: {e}")
+
     def _init_weights(self):
         for p in self.parameters():
             if p.dim() > 1:
                 nn.init.xavier_uniform_(p)
+
+    def load_state_dict(self, state_dict, strict=True):
+        """Extract vocab from state_dict if present, then load weights."""
+        state_dict = dict(state_dict)  # copy
+        src_t2i = state_dict.pop("_src_t2i", None)
+        src_i2t = state_dict.pop("_src_i2t", None)
+        tgt_t2i = state_dict.pop("_tgt_t2i", None)
+        tgt_i2t = state_dict.pop("_tgt_i2t", None)
+        if src_t2i is not None:
+            self._src_vocab  = src_t2i
+            self._src_i2t    = src_i2t
+            self._tgt_vocab  = tgt_t2i
+            self._tgt_i2t    = tgt_i2t
+            self._tgt_itos   = {i: t for i, t in enumerate(tgt_i2t)}
+            self._vocab_ready = True
+        super().load_state_dict(state_dict, strict=strict)
 
     def set_vocabs(self, src_vocab, tgt_vocab):
         """For compatibility with training code."""
@@ -308,6 +344,7 @@ class Transformer(nn.Module):
         pad_idx = self._src_vocab.get("<pad>", 0) if self._vocab_ready else 0
         tgt_bos = self._tgt_vocab.get("<bos>", 2) if self._vocab_ready else 2
         tgt_eos = self._tgt_vocab.get("<eos>", 3) if self._vocab_ready else 3
+        tgt_itos = self._tgt_itos if self._vocab_ready else {}
 
         # Handle string input
         if isinstance(src, str):
